@@ -9,19 +9,13 @@ load_dotenv()
 TOKEN = os.getenv('DISCORD_BOT_TOKEN')
 
 intents = discord.Intents.default()
-intents.message_content = True
+intents.message_content = True  # Enable message content intent
 
-bot = commands.Bot(command_prefix='!', intents=intents)
+bot = commands.Bot(command_prefix='ç', intents=intents)
 
 @bot.event
 async def on_ready():
     print(f'Bot is ready. Logged in as {bot.user}')
-
-@bot.event
-async def on_message(message):
-    if message.author == bot.user:
-        return
-    await bot.process_commands(message)
 
 @bot.command(name='translate')
 async def translate(ctx, *, text: str):

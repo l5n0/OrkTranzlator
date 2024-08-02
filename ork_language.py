@@ -1,3 +1,6 @@
+import re
+
+# Dictionary for Ork language translations
 ork_language = {
     'hello': 'ello',
     'yes': 'ya',
@@ -9,7 +12,9 @@ ork_language = {
     'big': 'big',
     'small': 'snikkit',
     'enemy': 'enemee',
-    'friend': 'boyz',
+    'friend': 'boy',
+    'friends': 'boyz',
+    'boys': 'boyz',
     'run': 'leggit',
     'fast': 'zoggin quick',
     'strong': 'stompy',
@@ -154,118 +159,51 @@ ork_language = {
     'orks': 'orks',
     'boyz': 'boyz',
     'waaagh': 'waaagh',
-    'iz': 'iz',
-    'da': 'da',
-    'fer': 'fer',
-    'ov': 'ov',
-    'wiv': 'wiv',
-    'frum': 'frum',
-    'ta': 'ta',
-    'dis': 'dis',
-    'dat': 'dat',
-    'dere': 'dere',
-    'ere': 'ere',
-    'owt': 'owt',
-    'up': 'up',
-    'down': 'down',
-    'left': 'left',
-    'rite': 'rite',
-    'bak': 'bak',
-    'frunt': 'frunt',
-    'go': 'go',
-    'kum': 'kum',
-    'tak': 'tak',
-    'mak': 'mak',
-    'get': 'get',
-    'giv': 'giv',
-    'see': 'see',
-    'look': 'look',
-    'no': 'no',
-    'fink': 'fink',
-    'say': 'say',
-    'spik': 'spik',
-    'heer': 'heer',
-    'lissen': 'lissen',
-    'do': 'do',
-    'try': 'try',
-    'yoos': 'yoos',
-    'need': 'need',
-    'want': 'want',
-    'like': 'like',
-    'luv': 'luv',
-    'hate': 'hate',
-    'feer': 'feer',
-    'hope': 'hope',
-    'beleeve': 'beleeve',
-    'remember': 'remember',
-    'forget': 'forget',
-    'liv': 'liv',
-    'die': 'die',
-    'moov': 'moov',
-    'stop': 'stop',
-    'start': 'start',
-    'end': 'end',
-    'open': 'open',
-    'kloze': 'kloze',
-    'lite': 'lite',
-    'dark': 'dark',
-    'day': 'day',
-    'nite': 'nite',
-    'mornin': 'mornin',
-    'aftanoon': 'aftanoon',
-    'evenin': 'evenin',
-    'grub': 'grub',
-    'drank': 'drank',
-    'wat': 'wat',
-    'fiyah': 'fiyah',
-    'urf': 'urf',
-    'wind': 'wind',
-    'sky': 'sky',
-    'star': 'star',
-    'sun': 'sun',
-    'moon': 'moon',
-    'time': 'time',
-    'wurl': 'wurl',
-    'life': 'life',
-    'deth': 'deth',
-    'frend': 'frend',
-    'eneme': 'eneme',
-    'boy': 'boy',
-    'girl': 'girl',
-    'man': 'man',
-    'womun': 'womun',
-    'kid': 'kid',
-    'beest': 'beest',
-    'monsta': 'monsta',
-    'mek': 'mek',
-    'wepon': 'wepon',
-    'shoota': 'shoota',
-    'choppa': 'choppa',
-    'shild': 'shild',
-    'armur': 'armur',
-    'cloze': 'cloze',
-    'boot': 'boot',
-    'hand': 'hand',
-    'foot': 'foot',
-    'hed': 'hed',
-    'boddy': 'boddy',
-    'eye': 'eye',
-    'ear': 'ear',
-    'mouf': 'mouf',
-    'noze': 'noze',
-    'hair': 'hair',
-    'skin': 'skin',
-    'bone': 'bone',
-    'blud': 'blud',
-    'hart': 'hart',
-    'mind': 'mind',
-    'soul': 'soul',
-    'spirit': 'spirit',
-    'fing': 'fing',
-    'stuff': 'stuff',
+    'dinner': 'dinna'
+}
+
+# List of exceptions
+exceptions = {
+    'friend': 'boy',
+    'friends': 'boyz',
+    'boys': 'boyz',
 }
 
 def translate_to_ork(text):
+    # Define the replacement rules
+    replacements = [
+        (r'th', 'd'),  # th -> d
+        (r'v', 'w'),   # v -> w
+        (r'ph', 'f'),  # ph -> f
+        (r'f', 'v'),   # f -> v
+        (r's', 'z'),   # s -> z
+        (r'c(?!h)', 'k'),  # c -> k, but not ch
+    ]
+
+    # Split text into words
     words = text.split()
-    translated_words = [ork_language.get(word.lower(), word) for word in words]
-    return ' '.join(translated_words)
+
+    # Apply exceptions first
+    translated_words = [exceptions.get(word.lower(), word) for word in words]
+
+    # Replace words using the ork_language dictionary
+    translated_words = [ork_language.get(word.lower(), word) for word in translated_words]
+
+    # Join the translated words into a single string
+    translated_text = ' '.join(translated_words)
+
+    # Apply replacements
+    for pattern, repl in replacements:
+        translated_text = re.sub(pattern, repl, translated_text)
+
+    # Additional grammar simplifications
+    translated_text = re.sub(r'\bis\b', 'iz', translated_text)
+    translated_text = re.sub(r'\bare\b', 'are', translated_text)
+    translated_text = re.sub(r'\bthe\b', 'da', translated_text)
+
+    return translated_text
+
+# Example usage
+if __name__ == '__main__':
+    example_text = "Hello friends"
+    print(translate_to_ork(example_text))
