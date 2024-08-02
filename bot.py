@@ -20,7 +20,6 @@ class CustomHelpCommand(commands.HelpCommand):
     async def send_bot_help(self, mapping):
         embed = discord.Embed(title="OrkTranzlator Bot Help", color=discord.Color.green())
         embed.add_field(name="çtl <text>", value="Translates the given text into Ork language.", inline=False)
-        embed.add_field(name="Example", value="çtl Hello friends", inline=False)
         await self.get_destination().send(embed=embed)
 
     async def send_command_help(self, command):
