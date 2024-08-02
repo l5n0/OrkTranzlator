@@ -1,166 +1,5 @@
 import re
-
-# Dictionary for Ork language translations
-ork_language = {
-    'hello': 'ello',
-    'yes': 'ya',
-    'no': 'nah',
-    'good': 'gud',
-    'bad': 'bad',
-    'fight': 'foight',
-    'war': 'waaagh',
-    'big': 'big',
-    'small': 'snikkit',
-    'enemy': 'enemee',
-    'friend': 'boy',
-    'friends': 'boyz',
-    'boys': 'boyz',
-    'run': 'leggit',
-    'fast': 'zoggin quick',
-    'strong': 'stompy',
-    'kill': 'krump',
-    'dead': 'ded',
-    'leader': 'boss',
-    'stupid': 'stoopid',
-    'smart': 'kunin',
-    'crazy': 'mad',
-    'attack': 'attak',
-    'defend': 'defendz',
-    'victory': 'viktory',
-    'defeat': 'defeet',
-    'win': 'winz',
-    'lose': 'looz',
-    'me': 'me',
-    'you': 'ya',
-    'we': 'we',
-    'they': 'dey',
-    'is': 'iz',
-    'are': 'are',
-    'the': 'da',
-    'a': 'a',
-    'an': 'an',
-    'to': 'ta',
-    'of': 'ov',
-    'and': 'an',
-    'in': 'in',
-    'on': 'on',
-    'for': 'fer',
-    'with': 'wiv',
-    'by': 'by',
-    'from': 'frum',
-    'as': 'az',
-    'at': 'at',
-    'about': 'abowt',
-    'if': 'if',
-    'it': 'it',
-    'this': 'dis',
-    'that': 'dat',
-    'there': 'dere',
-    'here': 'here',
-    'out': 'owt',
-    'up': 'up',
-    'down': 'down',
-    'left': 'left',
-    'right': 'rite',
-    'back': 'bak',
-    'front': 'frunt',
-    'go': 'go',
-    'come': 'kum',
-    'take': 'tak',
-    'make': 'mak',
-    'get': 'get',
-    'give': 'giv',
-    'see': 'see',
-    'look': 'look',
-    'know': 'no',
-    'think': 'fink',
-    'say': 'say',
-    'speak': 'spik',
-    'hear': 'heer',
-    'listen': 'lissen',
-    'do': 'do',
-    'try': 'try',
-    'use': 'yoos',
-    'need': 'need',
-    'want': 'want',
-    'like': 'like',
-    'love': 'luv',
-    'hate': 'hate',
-    'fear': 'feer',
-    'hope': 'hope',
-    'believe': 'beleeve',
-    'remember': 'remember',
-    'forget': 'forget',
-    'live': 'liv',
-    'die': 'die',
-    'move': 'moov',
-    'stop': 'stop',
-    'start': 'start',
-    'end': 'end',
-    'open': 'open',
-    'close': 'kloze',
-    'light': 'lite',
-    'dark': 'dark',
-    'day': 'day',
-    'night': 'nite',
-    'morning': 'mornin',
-    'afternoon': 'aftanoon',
-    'evening': 'evenin',
-    'food': 'grub',
-    'drink': 'drank',
-    'water': 'wat',
-    'fire': 'fiyah',
-    'earth': 'urf',
-    'wind': 'wind',
-    'sky': 'sky',
-    'star': 'star',
-    'sun': 'sun',
-    'moon': 'moon',
-    'time': 'time',
-    'world': 'wurl',
-    'life': 'life',
-    'death': 'deth',
-    'friend': 'frend',
-    'enemy': 'eneme',
-    'boy': 'boy',
-    'girl': 'girl',
-    'man': 'man',
-    'woman': 'womun',
-    'child': 'kid',
-    'beast': 'beest',
-    'monster': 'monsta',
-    'machine': 'mek',
-    'weapon': 'wepon',
-    'gun': 'shoota',
-    'blade': 'choppa',
-    'shield': 'shild',
-    'armor': 'armur',
-    'clothes': 'cloze',
-    'shoe': 'boot',
-    'hand': 'hand',
-    'foot': 'foot',
-    'head': 'hed',
-    'body': 'boddy',
-    'eye': 'eye',
-    'ear': 'ear',
-    'mouth': 'mouf',
-    'nose': 'noze',
-    'hair': 'hair',
-    'skin': 'skin',
-    'bone': 'bone',
-    'blood': 'blud',
-    'heart': 'hart',
-    'mind': 'mind',
-    'soul': 'soul',
-    'spirit': 'spirit',
-    'thing': 'fing',
-    'stuff': 'stuff',
-    'ork': 'ork',
-    'orks': 'orks',
-    'boyz': 'boyz',
-    'waaagh': 'waaagh',
-    'dinner': 'dinna'
-}
+from ork_dictionary import ork_language
 
 # List of exceptions
 exceptions = {
@@ -172,13 +11,51 @@ exceptions = {
 def translate_to_ork(text):
     # Define the replacement rules
     replacements = [
+        (r'\bI am\b|\bI\'m\b', 'I iz'),  # I am -> I iz
+        (r'\bWe are\b|\bWe\'re\b', 'We iz'),  # We are -> We iz
+        (r'\bYou are\b|\bYou\'re\b', 'You iz'),  # You are -> You iz
+        (r'\bThey are\b|\bThey\'re\b', 'Dey iz'),  # They are -> Dey iz
+        (r'\bDon\'t\b|\bDidn\'t\b|\bDoesn\'t\b', 'Dunt'),  # Don't -> Dunt
+        (r'\bIsn\'t\b|\bHasn\'t\b|\bHadn\'t\b', 'Ent'),  # Isn't -> Ent
+        (r'\bWasn\'t\b|\bWeren\'t\b', 'Wunt'),  # Wasn't -> Wunt
+        (r'\bHis\b', '\'Iz'),  # His -> 'Iz
+        (r'\bHer\b|\bHers\b', '\'Er'),  # Her -> 'Er
+        (r'\bTheirs\b', 'Derez'),  # Theirs -> Derez
+        (r'\bOurs\b', 'Arrz'),  # Ours -> Arrz
+        (r'\bYours\b', 'Yourz'),  # Yours -> Yourz
+        (r'\bYour\b', 'Yer'),  # Your -> Yer
+        (r'\bThinking\b', 'Finking'),  # Thinking -> Finking
+        (r'\bThought\b', 'Fought'),  # Thought -> Fought
+        (r'\bThree\b', 'Free'),  # Three -> Free
+        (r'\bThanks\b', 'Fanks'),  # Thanks -> Fanks
+        (r'\bThunder\b', 'Funda'),  # Thunder -> Funda
+        (r'\bOther\b', 'Ovva'),  # Other -> Ovva
+        (r'\bFather\b', 'Farva'),  # Father -> Farva
+        (r'\bMother\b', 'Muvva'),  # Mother -> Muvva
+        (r'\bBrother\b', 'Bruvva'),  # Brother -> Bruvva
+        (r'\bBother\b', 'Bovva'),  # Bother -> Bovva
+        (r'\bFeather\b', 'Fevva'),  # Feather -> Fevva
+        (r'\bSomething\b', 'Sumfing'),  # Something -> Sumfing
+        (r'\bNothing\b', 'Nuffing'),  # Nothing -> Nuffing
+        (r'\bEverything\b', 'Everyfing'),  # Everything -> Everyfing
+        (r'\bDeath\b', 'Deff'),  # Death -> Deff
+        (r'\bEarth\b', 'Erf'),  # Earth -> Erf
+        (r'\bHealth\b', 'Elff'),  # Health -> Elff
+        (r'\bBreath\b', 'Breff'),  # Breath -> Breff
+        (r'\bWealth\b', 'Welf'),  # Wealth -> Welf
+        (r'\bWorth\b', 'Wurf'),  # Worth -> Wurf
+        (r'\bBoth\b', 'Boaf'),  # Both -> Boaf
+        (r'\bWith\b', 'Wiv'),  # With -> Wiv
         (r'th', 'd'),  # th -> d
         (r'v', 'w'),   # v -> w
         (r'ph', 'f'),  # ph -> f
         (r'f', 'v'),   # f -> v
         (r's', 'z'),   # s -> z
-        (r'er', 'ir'),   # er -> ir
         (r'c(?!h)', 'k'),  # c -> k, but not ch
+        (r'ould', 'ud'),  # should -> shud
+        (r'er\b', 'a'),  # er -> a
+        (r'er', 'ah'),  # er -> ah
+        (r'\bThe\b', 'Da'),  # The -> Da
     ]
 
     # Split text into words
@@ -196,11 +73,6 @@ def translate_to_ork(text):
     # Apply replacements
     for pattern, repl in replacements:
         translated_text = re.sub(pattern, repl, translated_text)
-
-    # Additional grammar simplifications
-    translated_text = re.sub(r'\bis\b', 'iz', translated_text)
-    translated_text = re.sub(r'\bare\b', 'are', translated_text)
-    translated_text = re.sub(r'\bthe\b', 'da', translated_text)
 
     return translated_text
 
