@@ -1,5 +1,5 @@
 import re
-from ork_dictionary import ork_language
+from scripts.ork_dictionary import ork_language
 
 # List of exceptions
 exceptions = {
