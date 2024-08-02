@@ -177,6 +177,7 @@ def translate_to_ork(text):
         (r'ph', 'f'),  # ph -> f
         (r'f', 'v'),   # f -> v
         (r's', 'z'),   # s -> z
+        (r'er', 'ir'),   # er -> ir
         (r'c(?!h)', 'k'),  # c -> k, but not ch
     ]
 
