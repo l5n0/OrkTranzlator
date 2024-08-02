@@ -18,4 +18,4 @@ OrkTranzlator is a Discord bot that translates text into the Warhammer 40k Ork l
 
 ## Usage
 
-Once the bot is running, use the `!translate <text>` command in your Discord server to translate text into Ork language.
+Once the bot is running, use the `!tl <text>` command in your Discord server to translate text into Ork language.
