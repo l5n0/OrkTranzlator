@@ -1,3 +1,6 @@
+# Something about the translation
+Hello, if you have any changes to the language or grammar of the orcs, you can always contact me via Discord. --> [L5n](https://discord.com/users/282918638414069761) 
+
 # OrkTranzlator Bot
 
 OrkTranzlator is a Discord bot that translates text into the Warhammer 40k Ork language.
