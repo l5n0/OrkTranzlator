@@ -11,7 +11,7 @@ exceptions = {
 def translate_to_ork(text):
     # Define the replacement rules
     replacements = [
-        (r'\bI am\b|\bI\'m\b', 'I iz'),  # I am -> I iz
+        (r'\bI am\b|\bI\'m\b|\bIm\b', 'I iz'),  # I am -> I iz, I'm -> I iz, Im -> I iz
         (r'\bWe are\b|\bWe\'re\b', 'We iz'),  # We are -> We iz
         (r'\bYou are\b|\bYou\'re\b', 'You iz'),  # You are -> You iz
         (r'\bThey are\b|\bThey\'re\b', 'Dey iz'),  # They are -> Dey iz
@@ -65,13 +65,11 @@ def translate_to_ork(text):
     # Apply exceptions first
     translated_words = [exceptions.get(word.lower(), word) for word in words]
 
-    # Replace words using the ork_language dictionary
+    # Replace words using the ork_language dictionary if not in exceptions
     translated_words = [ork_language.get(word.lower(), word) for word in translated_words]
 
-    # Join the translated words into a single string
-    translated_text = ' '.join(translated_words)
-
     # Apply replacements in a case-insensitive manner
+    translated_text = ' '.join(translated_words)
     for pattern, repl in replacements:
         translated_text = re.sub(pattern, repl, translated_text, flags=re.IGNORECASE)
 
