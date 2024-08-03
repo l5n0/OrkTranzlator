@@ -71,9 +71,9 @@ def translate_to_ork(text):
     # Join the translated words into a single string
     translated_text = ' '.join(translated_words)
 
-    # Apply replacements
+    # Apply replacements in a case-insensitive manner
     for pattern, repl in replacements:
-        translated_text = re.sub(pattern, repl, translated_text)
+        translated_text = re.sub(pattern, repl, translated_text, flags=re.IGNORECASE)
 
     return translated_text
 
