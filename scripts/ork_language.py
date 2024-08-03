@@ -46,6 +46,7 @@ def translate_to_ork(text):
         (r'\bWorth\b', 'Wurf'),  # Worth -> Wurf
         (r'\bBoth\b', 'Boaf'),  # Both -> Boaf
         (r'\bWith\b', 'Wiv'),  # With -> Wiv
+        (r'ng\b', "n'"),  # words ending with ng -> n'
         (r'th', 'd'),  # th -> d
         (r'v', 'w'),   # v -> w
         (r'ph', 'f'),  # ph -> f
